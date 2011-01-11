@@ -1,0 +1,39 @@
+﻿Build started 10/21/2010 3:20:23 PM.
+     1>Project "C:\Users\Nick and Christine\Desktop\root\projects\MyPixels.vcxproj" on node 2 (build target(s)).
+     1>C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.Targets(1200,9): warning : The referenced project '..\projects\PixelToaster.vcxproj' does not exist.
+     1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(298,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+     1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(299,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>InitializeBuildStatus:
+         Creating ".\MyPixels.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Nick and Christine\Documents\Visual Studio 2010\Projects\pixeltoaster-release" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\\" /Fd".\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Clipper.cpp Color.cpp CObject.cpp Edge.cpp GObject.cpp Matrix4x4.cpp MyPixels.cpp NPolygon.cpp Rasterizer.cpp Span.cpp Vertex.cpp
+         Vertex.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Vertex.cpp': No such file or directory
+         Span.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Span.cpp': No such file or directory
+         Rasterizer.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Rasterizer.cpp': No such file or directory
+         NPolygon.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'NPolygon.cpp': No such file or directory
+         MyPixels.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'MyPixels.cpp': No such file or directory
+         Matrix4x4.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Matrix4x4.cpp': No such file or directory
+         GObject.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'GObject.cpp': No such file or directory
+         Edge.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Edge.cpp': No such file or directory
+         CObject.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'CObject.cpp': No such file or directory
+         Color.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Color.cpp': No such file or directory
+         Clipper.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Clipper.cpp': No such file or directory
+         Camera.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'Camera.cpp': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\Users\Nick and Christine\Desktop\root\projects\MyPixels.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.25
