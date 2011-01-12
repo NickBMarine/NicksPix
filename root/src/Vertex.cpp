@@ -5,11 +5,11 @@
 
 void Vertex::Normalize()
 {
-	Vertex tempVertex(color, x, y, z);
-	float sqrdValues = (x * x) + (y * y) + (z * z);
-	tempVertex.x = (tempVertex.x/sqrt(sqrdValues));
-	tempVertex.y = (tempVertex.y/sqrt(sqrdValues));
-	tempVertex.z = (tempVertex.z/sqrt(sqrdValues));
+	Vertex tempVertex(_color, _x, _y, _z);
+	float sqrdValues = (_x * _x) + (_y * _y) + (_z * _z);
+	tempVertex._x = (tempVertex._x/sqrt(sqrdValues));
+	tempVertex._y = (tempVertex._y/sqrt(sqrdValues));
+	tempVertex._z = (tempVertex._z/sqrt(sqrdValues));
 
 	*this = tempVertex;
 }
@@ -18,31 +18,31 @@ Vertex Vertex::operator*(float & scalar)
 {
 	Vertex tempVec;
 
-	tempVec.color = color * scalar;
-	tempVec.x = x * scalar;
-	tempVec.y = y * scalar;
-	tempVec.z = z * scalar;
-	tempVec.w = w * scalar;
-	tempVec.u = u * scalar;
-	tempVec.v = v * scalar;
+	tempVec._color = _color * scalar;
+	tempVec._x = _x * scalar;
+	tempVec._y = _y * scalar;
+	tempVec._z = _z * scalar;
+	tempVec._w = _w * scalar;
+	tempVec._u = _u * scalar;
+	tempVec._v = _v * scalar;
 
 	return tempVec;
 }
 
 void Vertex::SetVec(float & X, float & Y, float & Z)
 {
-	x = X;
-	y = Y;
-	z = Z;
+	_x = X;
+	_y = Y;
+	_z = Z;
 }
 
 Vertex Vertex::GetNormal(const Vertex & verts)
 {
 	Vertex normal;
 
-	normal.x = ((y * verts.z) - (z * verts.y));
-	normal.y = ((z * verts.x) - (x * verts.z));
-	normal.z = ((x * verts.y) - (y * verts.x));
+	normal._x = ((_y * verts._z) - (_z * verts._y));
+	normal._y = ((_z * verts._x) - (_x * verts._z));
+	normal._z = ((_x * verts._y) - (_y * verts._x));
 
 	normal.Normalize();
 
@@ -51,19 +51,19 @@ Vertex Vertex::GetNormal(const Vertex & verts)
 
 float Vertex::GetDotProduct(const Vertex * verts)
 {
-	float dot = ((x * verts->x) + (y * verts->y) + (z * verts->z));
+	float dot = ((_x * verts->_x) + (_y * verts->_y) + (_z * verts->_z));
 	return dot;
 }
 
 float Vertex::GetDotProduct(const Vertex & verts)
 {
-	float dot = ((x * verts.x) + (y * verts.y) + (z * verts.z));
+	float dot = ((_x * verts._x) + (_y * verts._y) + (_z * verts._z));
 	return dot;
 }
 
 float Vertex::GetDotHom(Vertex & verts)
 {
-	float dot = (verts.w * w) + (verts.x * x) + (verts.y * y) + (verts.z * z);
+	float dot = (verts._w * _w) + (verts._x * _x) + (verts._y * _y) + (verts._z * _z);
 	return dot;
 }
 
@@ -71,13 +71,13 @@ Vertex Vertex::SubtractHom(Vertex & verts)
 {
 	Vertex tempVert;
 
-	tempVert.color = color - verts.color;
-	tempVert.x = x - verts.x;
-	tempVert.y = y - verts.y;
-	tempVert.z = z - verts.z;
-	tempVert.w = w - verts.w;
-	tempVert.u = u - verts.u;
-	tempVert.v = v - verts.v;
+	tempVert._color = _color - verts._color;
+	tempVert._x = _x - verts._x;
+	tempVert._y = _y - verts._y;
+	tempVert._z = _z - verts._z;
+	tempVert._w = _w - verts._w;
+	tempVert._u = _u - verts._u;
+	tempVert._v = _v - verts._v;
 
 	return tempVert;
 }
@@ -86,11 +86,11 @@ Vertex Vertex::AddHom(Vertex & verts)
 {
 	Vertex tempVert;
 
-	tempVert.color = color + verts.color;
-	tempVert.x = x + verts.x;
-	tempVert.y = y + verts.y;
-	tempVert.z = z + verts.z;
-	tempVert.w = w + verts.w;
+	tempVert._color = _color + verts._color;
+	tempVert._x = _x + verts._x;
+	tempVert._y = _y + verts._y;
+	tempVert._z = _z + verts._z;
+	tempVert._w = _w + verts._w;
 
 	return tempVert;
 }
@@ -99,85 +99,85 @@ Vertex Vertex::ScaleHom(float & scale)
 {
 	Vertex tempVert;
 
-	tempVert.color = color * scale;
-	tempVert.x = x * scale;
-	tempVert.y = y * scale;
-	tempVert.z = z * scale;
-	tempVert.w = w * scale;
+	tempVert._color = _color * scale;
+	tempVert._x = _x * scale;
+	tempVert._y = _y * scale;
+	tempVert._z = _z * scale;
+	tempVert._w = _w * scale;
 
 	return tempVert;
 }
 
 void Vertex::SetHomVec(Vertex & vec)
 {
-	x = vec.x;
-	y = vec.y;
-	z = vec.z;
-	w = vec.w;
+	_x = vec._x;
+	_y = vec._y;
+	_z = vec._z;
+	_w = vec._w;
 }
 
 
 float Vertex::GetMagnitude()
 {
-	return (sqrt((x * x) + (y * y) + (z * z)));
+	return (sqrt((_x * _x) + (_y * _y) + (_z * _z)));
 }
 
 Vertex Vertex::operator-(Vertex & vector)
 {
-	Vertex tempVec(color, x, y, z);
-	tempVec.x = x - vector.x;
-	tempVec.y = y - vector.y;
-	tempVec.z = z - vector.z;
+	Vertex tempVec(_color, _x, _y, _z);
+	tempVec._x = _x - vector._x;
+	tempVec._y = _y - vector._y;
+	tempVec._z = _z - vector._z;
 
 	return tempVec;
 }
 
 Vertex Vertex::operator-=(Vertex & vector)
 {
-	x = x - vector.x;
-	y = y - vector.y;
-	z = z - vector.z;
+	_x = _x - vector._x;
+	_y = _y - vector._y;
+	_z = _z - vector._z;
 
 	return *this;
 }
 
 Vertex Vertex::operator+(Vertex & vector)
 {
-	Vertex tempVec(color, x, y, z);
-	tempVec.color = color + vector.color;
-	tempVec.x = x + vector.x;
-	tempVec.y = y + vector.y;
-	tempVec.z = z + vector.z;
-	tempVec.w = w + vector.w;
-	tempVec.u = u + vector.u;
-	tempVec.v = v + vector.v;
+	Vertex tempVec(_color, _x, _y, _z);
+	tempVec._color = _color + vector._color;
+	tempVec._x = _x + vector._x;
+	tempVec._y = _y + vector._y;
+	tempVec._z = _z + vector._z;
+	tempVec._w = _w + vector._w;
+	tempVec._u = _u + vector._u;
+	tempVec._v = _v + vector._v;
 
 	return tempVec;
 }
 
 Vertex Vertex::operator+=(Vertex & vector)
 {
-	x = x + vector.x;
-	y = y + vector.y;
-	z = z + vector.z;
+	_x = _x + vector._x;
+	_y = _y + vector._y;
+	_z = _z + vector._z;
 
 	return *this;
 }
 
 bool Vertex::operator!=(const Vertex & vector)
 {
-	return ( (x != vector.x) || (y != vector.y) || (z != vector.z));
+	return ( (_x != vector._x) || (_y != vector._y) || (_z != vector._z));
 }
 
 bool Vertex::operator==(const Vertex & vector)
 {
-	return (( x == vector.x) && (y == vector.y) && (z == vector.z));
+	return (( _x == vector._x) && (_y == vector._y) && (_z == vector._z));
 }
 
 
 void Vertex::Negate()
 {
-	x = -x;
-	y = -y;
-	z = -z;
+	_x = -_x;
+	_y = -_y;
+	_z = -_z;
 }

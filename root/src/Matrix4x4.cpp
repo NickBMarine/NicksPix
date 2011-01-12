@@ -25,22 +25,22 @@ Matrix4x4::Matrix4x4(float t_11, float t_12, float t_13, float t_14,
 
 void Matrix4x4::Transformation(vector<Vertex> &vertex, int index)
 {
-	Vertex tempVertex(vertex[index].color, vertex[index].x, vertex[index].y, vertex[index].z);
+	Vertex tempVertex(vertex[index]._color, vertex[index]._x, vertex[index]._y, vertex[index]._z);
 
-	vertex[index].x = (_11 * tempVertex.x) + (_21 * tempVertex.y) + (_31 * tempVertex.z) + _41;
-	vertex[index].y = (_12 * tempVertex.x) + (_22 * tempVertex.y) + (_32 * tempVertex.z) + _42; 
-	vertex[index].z = (_13 * tempVertex.x) + (_23 * tempVertex.y) + (_33 * tempVertex.z) + _43;
-	vertex[index].w = (_14 * tempVertex.x) + (_24 * tempVertex.y) + (_34 * tempVertex.z) + (tempVertex.w *_44);
+	vertex[index]._x = (_11 * tempVertex._x) + (_21 * tempVertex._y) + (_31 * tempVertex._z) + _41;
+	vertex[index]._y = (_12 * tempVertex._x) + (_22 * tempVertex._y) + (_32 * tempVertex._z) + _42; 
+	vertex[index]._z = (_13 * tempVertex._x) + (_23 * tempVertex._y) + (_33 * tempVertex._z) + _43;
+	vertex[index]._w = (_14 * tempVertex._x) + (_24 * tempVertex._y) + (_34 * tempVertex._z) + (tempVertex._w *_44);
 }
 
 void Matrix4x4::Transformation(Vertex &vector)
 {
-	Vertex tempVertex(vector.color, vector.x, vector.y, vector.z, vector.w);
+	Vertex tempVertex(vector._color, vector._x, vector._y, vector._z, vector._w);
 
-	vector.x = (_11 * tempVertex.x) + (_21 * tempVertex.y) + (_31 * tempVertex.z) + _41;
-	vector.y = (_12 * tempVertex.x) + (_22 * tempVertex.y) + (_32 * tempVertex.z) + _42; 
-	vector.z = (_13 * tempVertex.x) + (_23 * tempVertex.y) + (_33 * tempVertex.z) + _43;
-	vector.w = (_14 * tempVertex.x) + (_24 * tempVertex.y) + (_34 * tempVertex.z) + (tempVertex.w * _44);
+	vector._x = (_11 * tempVertex._x) + (_21 * tempVertex._y) + (_31 * tempVertex._z) + _41;
+	vector._y = (_12 * tempVertex._x) + (_22 * tempVertex._y) + (_32 * tempVertex._z) + _42; 
+	vector._z = (_13 * tempVertex._x) + (_23 * tempVertex._y) + (_33 * tempVertex._z) + _43;
+	vector._w = (_14 * tempVertex._x) + (_24 * tempVertex._y) + (_34 * tempVertex._z) + (tempVertex._w * _44);
 }
 
 void Matrix4x4::Transformation(Matrix4x4 matrix)
@@ -77,9 +77,9 @@ void Matrix4x4::Translation(float x, float y, float z)
 
 void Matrix4x4::Translation(const Vertex& trans)
 {
-	_41 +=  trans.x;
-    _42 +=  trans.y;
-	_43 +=  trans.z;
+	_41 +=  trans._x;
+    _42 +=  trans._y;
+	_43 +=  trans._z;
 }
 
 void Matrix4x4::SetPos(float x, float y, float z)
@@ -91,9 +91,9 @@ void Matrix4x4::SetPos(float x, float y, float z)
 
 void Matrix4x4::SetPos(const Vertex& set)
 {
-	_41 = set.x;
-	_42 = set.y;
-	_43 = set.z;
+	_41 = set._x;
+	_42 = set._y;
+	_43 = set._z;
 }
 
 void Matrix4x4::SetMatrix(float t_11, float t_12, float t_13, float t_14,
@@ -242,25 +242,25 @@ void Matrix4x4::ArbAxisRotation(Vertex &rotVert, int degrees)
 
 	rotVert.Normalize();
 
-	float xy = rotVert.x * rotVert.y;
-	float xz = rotVert.x * rotVert.z;
-	float yz = rotVert.y * rotVert.z;
-	float xSq = rotVert.x * rotVert.x;
-	float ySq = rotVert.y * rotVert.y;
-	float zSq = rotVert.z * rotVert.z;
+	float xy = rotVert._x * rotVert._y;
+	float xz = rotVert._x * rotVert._z;
+	float yz = rotVert._y * rotVert._z;
+	float xSq = rotVert._x * rotVert._x;
+	float ySq = rotVert._y * rotVert._y;
+	float zSq = rotVert._z * rotVert._z;
 	float oneMincos = (1-cos(radians));
 
 	Matrix4x4 matRotate;
 	matRotate.Identity();
 
 	matRotate._11 =  xSq * oneMincos + cos(radians);
-	matRotate._12 =  xy * oneMincos + rotVert.z * sin(radians);
-	matRotate._13 =	 xz * oneMincos - rotVert.y * sin(radians);
-	matRotate._21 =  xy * oneMincos - rotVert.z * sin(radians);
+	matRotate._12 =  xy * oneMincos + rotVert._z * sin(radians);
+	matRotate._13 =	 xz * oneMincos - rotVert._y * sin(radians);
+	matRotate._21 =  xy * oneMincos - rotVert._z * sin(radians);
 	matRotate._22 =  ySq * oneMincos + cos(radians);
-	matRotate._23 =  yz * oneMincos + rotVert.x * sin(radians);
-	matRotate._31 =  xz * oneMincos + rotVert.y * sin(radians);
-	matRotate._32 =  yz * oneMincos - rotVert.x * sin(radians);
+	matRotate._23 =  yz * oneMincos + rotVert._x * sin(radians);
+	matRotate._31 =  xz * oneMincos + rotVert._y * sin(radians);
+	matRotate._32 =  yz * oneMincos - rotVert._x * sin(radians);
 	matRotate._33 =  zSq * oneMincos + cos(radians);
 
 	Transformation(matRotate);
@@ -347,9 +347,9 @@ void Matrix4x4::Negate()
 
 void Matrix4x4::EulerRotation(const Vertex &rot)
 {
-	float radiansX = rot.x * (float(PI)/float(180));
-	float radiansY = rot.y * (float(PI)/float(180));
-	float radiansZ = rot.z * (float(PI)/float(180));
+	float radiansX = rot._x * (float(PI)/float(180));
+	float radiansY = rot._y * (float(PI)/float(180));
+	float radiansZ = rot._z * (float(PI)/float(180));
 
 	Matrix4x4 matRotateX;
 	matRotateX.SetMatrix(1.0f, 0.0f,         0.0f,
@@ -374,29 +374,29 @@ void Matrix4x4::EulerRotation(const Vertex &rot)
 
 void Matrix4x4::Scale(const Vertex &scale)
 {
-	this->SetMatrix(scale.x, _12,     _13,     _14,
-					_21,     scale.y, _23,     _24,
-					_31,     _32,     scale.z, _34,
+	this->SetMatrix(scale._x, _12,     _13,     _14,
+					_21,     scale._y, _23,     _24,
+					_31,     _32,     scale._z, _34,
 					_41,     _42,     _43,     _44);
 }
 
 void Matrix4x4::SetRowOne(Vertex & v)
 {
-	_11 = v.x;
-	_12 = v.y;
-	_13 = v.z;
+	_11 = v._x;
+	_12 = v._y;
+	_13 = v._z;
 }
 
 void Matrix4x4::SetRowTwo(Vertex & v)
 {
-	_21 = v.x;
-	_22 = v.y;
-	_23 = v.z;
+	_21 = v._x;
+	_22 = v._y;
+	_23 = v._z;
 }
 
 void Matrix4x4::SetRowThree(Vertex & v)
 {
-	_31 = v.x;
-	_32 = v.y;
-	_33 = v.z;
+	_31 = v._x;
+	_32 = v._y;
+	_33 = v._z;
 }

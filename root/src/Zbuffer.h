@@ -1,10 +1,9 @@
 struct ZBuffer
 {
-public:
-	bool  m_nearest;
-	float m_zBuffer;
+	bool  _nearest;
+	float _zBuffer;
 	ZBuffer() {};
-	ZBuffer(float distance) : m_zBuffer(distance) {};
+	ZBuffer(float distance) : _zBuffer(distance) {};
 	bool UpdateZBuff(float Z, float near, float far);
 };
 //

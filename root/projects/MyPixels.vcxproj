@@ -133,7 +133,6 @@
     <ClCompile Include="..\src\Rasterizer.cpp" />
     <ClCompile Include="..\src\Span.cpp" />
     <ClCompile Include="..\src\Texel.cpp" />
-    <ClCompile Include="..\src\Vector3.cpp" />
     <ClCompile Include="..\src\Vertex.cpp" />
     <ClCompile Include="..\src\ZBuffer.cpp" />
   </ItemGroup>

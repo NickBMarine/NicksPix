@@ -48,9 +48,6 @@
     <ClCompile Include="..\src\Span.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vector3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -3,8 +3,8 @@
 
 struct Color
 {
-	float r, g, b;
-	Color() : r(0), g(0), b(0) {};
+	float _r, _g, _b;
+	Color() : _r(0), _g(0), _b(0) {};
 	Color(int red, int green, int blue);
 	Color(float red, float green, float blue);
 	Color operator+(const Color &c) const;
