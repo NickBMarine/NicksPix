@@ -7,67 +7,67 @@ Rasterizer::Rasterizer(const unsigned width, const unsigned height, const float 
 	int w = width;
 	int h = height;
 	SetFov(degrees);
-	leftUBounds = new float[h];
-	rightUBounds = new float[h];
-	leftVBounds = new float[h];
-	rightVBounds = new float[h];
-	leftColor = new Color[h];
-	rightColor = new Color[h];
-	leftZBounds = new float[h];
-	rightZBounds = new float[h];
-	leftBounds = new int[h];
-	rightBounds = new int[h];
-	leftWBounds = new float[h];
-	rightWBounds = new float[h];
-	m_pixels.resize(width * height);
-	m_width = w;
-	m_height = h;
+	_leftUBounds = new float[h];
+	_rightUBounds = new float[h];
+	_leftVBounds = new float[h];
+	_rightVBounds = new float[h];
+	_leftColor = new Color[h];
+	_rightColor = new Color[h];
+	_leftZBounds = new float[h];
+	_rightZBounds = new float[h];
+	_leftBounds = new int[h];
+	_rightBounds = new int[h];
+	_leftWBounds = new float[h];
+	_rightWBounds = new float[h];
+	_pixels.resize(width * height);
+	_width = w;
+	_height = h;
 	ResetBounds();
-	m_nearPlane = 2;
-	m_farPlane  = 100;
-	m_zBuff.resize(width * height);
+	_nearPlane = 2;
+	_farPlane  = 100;
+	_zBuff.resize(width * height);
 	SetUpMatrices();
 	ResetZBuff();
-	basisOrigin = Vertex(0.0f, 0.0f, 0.0f);
-	basisP = Vertex(Color(1.0f, 0.0f, 0.0f), 1.0f, 0.0f, 0.0f);
-	basisQ = Vertex(Color(0.0f, 1.0f, 0.0f), 0.0f, 1.0f, 0.0f);
-	basisR = Vertex(Color(0.0f, 0.0f, 1.0f), 0.0f, 0.0f, 1.0f);
+	_basisOrigin = Vertex(0.0f, 0.0f, 0.0f);
+	_basisP = Vertex(Color(1.0f, 0.0f, 0.0f), 1.0f, 0.0f, 0.0f);
+	_basisQ = Vertex(Color(0.0f, 1.0f, 0.0f), 0.0f, 1.0f, 0.0f);
+	_basisR = Vertex(Color(0.0f, 0.0f, 1.0f), 0.0f, 0.0f, 1.0f);
 }
 
 void Rasterizer::DrawLine(const Vertex &vertex1, const Vertex &vertex2, Color & color)
 {
-	float xDiff = (vertex2.x - vertex1.x);
-	float yDiff = (vertex2.y - vertex1.y);
+	float xDiff = (vertex2._x - vertex1._x);
+	float yDiff = (vertex2._y - vertex1._y);
 
 	if (xDiff == 0.0f && yDiff == 0.0f)
 	{
 		if ( color == NULL)
-			SetPixel(int(vertex1.x), int(vertex1.y), vertex1.z, vertex1.color);
+			SetPixel(int(vertex1._x), int(vertex1._y), vertex1._z, vertex1._color);
 		else
-			SetPixel(int(vertex1.x), int(vertex1.y), vertex1.z, color);		
+			SetPixel(int(vertex1._x), int(vertex1._y), vertex1._z, color);		
 	}
 	
 	if ( fabs(xDiff) > fabs(yDiff) )
 	{
 		float xMin, xMax;
 
-		if (vertex1.x < vertex2.x)
+		if (vertex1._x < vertex2._x)
 		{
-			xMin = vertex1.x;
-			xMax = vertex2.x;
+			xMin = vertex1._x;
+			xMax = vertex2._x;
 		}
 		else
 		{
-			xMin = vertex2.x;
-			xMax = vertex1.x;
+			xMin = vertex2._x;
+			xMax = vertex1._x;
 		}
 		float slope = yDiff / xDiff;
 		for ( float x = xMin; x < xMax; x += 1)
 		{
 
-			float y = vertex1.y + ((x - vertex1.x) * slope);
-			float z = vertex1.z + ((x - vertex1.x) * (vertex2.z - vertex1.z)/ xDiff);
-			Color tempColor = vertex1.color + ((vertex2.color - vertex1.color) * ((x - vertex1.x) / xDiff));
+			float y = vertex1._y + ((x - vertex1._x) * slope);
+			float z = vertex1._z + ((x - vertex1._x) * (vertex2._z - vertex1._z)/ xDiff);
+			Color tempColor = vertex1._color + ((vertex2._color - vertex1._color) * ((x - vertex1._x) / xDiff));
 			if ( color == NULL)
 				SetPixel(int(x), int(y), z, tempColor);
 			else
@@ -78,22 +78,22 @@ void Rasterizer::DrawLine(const Vertex &vertex1, const Vertex &vertex2, Color & 
 	{
 		float yMin, yMax;
 
-		if (vertex1.y < vertex2.y)
+		if (vertex1._y < vertex2._y)
 		{
-			yMin = vertex1.y;
-			yMax = vertex2.y;
+			yMin = vertex1._y;
+			yMax = vertex2._y;
 		}
 		else
 		{
-			yMin = vertex2.y;
-			yMax = vertex1.y;
+			yMin = vertex2._y;
+			yMax = vertex1._y;
 		}
 		float slope = xDiff / yDiff;
 		for ( float y = yMin; y < yMax; y += 1)
 		{
-			float x = vertex1.x + ((y - vertex1.y) * slope);
-			float z = vertex1.z + ((y - vertex1.y) * (vertex2.z - vertex1.z)/ yDiff);
-			Color tempColor = vertex1.color + ((vertex2.color - vertex1.color) * ((y - vertex1.y) / yDiff));
+			float x = vertex1._x + ((y - vertex1._y) * slope);
+			float z = vertex1._z + ((y - vertex1._y) * (vertex2._z - vertex1._z)/ yDiff);
+			Color tempColor = vertex1._color + ((vertex2._color - vertex1._color) * ((y - vertex1._y) / yDiff));
 			if ( color == NULL)
 				SetPixel(int(x), int(y), z, tempColor);
 			else
@@ -104,18 +104,18 @@ void Rasterizer::DrawLine(const Vertex &vertex1, const Vertex &vertex2, Color & 
 
 void Rasterizer::DrawSpan(const Span &span, int y)
 {
-	float xDiff = span.X2 - span.X1;
+	float xDiff = span._x2 - span._x1;
     if(xDiff == 0) 
 		return;
 
-	float zResult = span.Z1;
-	float wInvResult = span.W1;
-	float uResult = span.U1;
-	float vResult = span.V1;
+	float zResult = span._z1;
+	float wInvResult = span._w1;
+	float uResult = span._u1;
+	float vResult = span._v1;
 	float u;
 	float v;
 
-    for(int x = (span.X1); x < (span.X2); x++) 
+    for(int x = (span._x1); x < (span._x2); x++) 
 	{
 		u = uResult/wInvResult;
 		v = vResult/wInvResult;
@@ -129,8 +129,8 @@ void Rasterizer::DrawSpan(const Span &span, int y)
 
 void Rasterizer::ClearScreen()
 {
-	void * mem = &m_pixels[0];
-	int size = m_pixels.size() * sizeof(m_pixels[0]);
+	void * mem = &_pixels[0];
+	int size = _pixels.size() * sizeof(_pixels[0]);
  
 	memset(mem, 0, size);
 }
@@ -161,9 +161,9 @@ void Rasterizer::ProcessVertices(const vector<Vertex> & vertices,
 	for ( int i = 0; i < index; i++)
 	{
 		vector<Vertex> verts;
-			verts.push_back(Vertex(newVertices[indices[j]].x, newVertices[indices[j]].y, newVertices[indices[j]].z, newVertices[indices[j]].u, newVertices[indices[j]].v));
-			verts.push_back(Vertex(newVertices[indices[j+1]].x, newVertices[indices[j+1]].y, newVertices[indices[j+1]].z, newVertices[indices[j+1]].u, newVertices[indices[j+1]].v));
-			verts.push_back(Vertex(newVertices[indices[j+2]].x, newVertices[indices[j+2]].y, newVertices[indices[j+2]].z, newVertices[indices[j+2]].u, newVertices[indices[j+2]].v));
+			verts.push_back(Vertex(newVertices[indices[j]]._x, newVertices[indices[j]]._y, newVertices[indices[j]]._z, newVertices[indices[j]]._u, newVertices[indices[j]]._v));
+			verts.push_back(Vertex(newVertices[indices[j+1]]._x, newVertices[indices[j+1]]._y, newVertices[indices[j+1]]._z, newVertices[indices[j+1]]._u, newVertices[indices[j+1]]._v));
+			verts.push_back(Vertex(newVertices[indices[j+2]]._x, newVertices[indices[j+2]]._y, newVertices[indices[j+2]]._z, newVertices[indices[j+2]]._u, newVertices[indices[j+2]]._v));
 
 		NPolygon poly(verts, 3);
 
@@ -181,7 +181,7 @@ bool Rasterizer::CullCheck(NPolygon poly)
 	Vertex * polyNorm = poly.GetNormal();
 	vector<Vertex> vertices = poly.GetVertices();
 
-	Vertex camToPoly = vertices[0] - cameraPos;
+	Vertex camToPoly = vertices[0] - _cameraPos;
 
 	if (camToPoly.GetDotProduct(polyNorm) > 0)
 	{
@@ -240,12 +240,12 @@ NPolygon Rasterizer::ClipCheck(vector<Vertex> & verts)
 	vector<Vertex> tempVerts = poly.GetVertices();
 	for (int i = 0; i < poly.GetSides(); i++)
 	{
-		tempVerts[i].w = 1.0f/tempVerts[i].w;
-		tempVerts[i].x *= tempVerts[i].w;
-		tempVerts[i].y *= tempVerts[i].w;
-		tempVerts[i].u *= tempVerts[i].w;
-		tempVerts[i].v *= tempVerts[i].w;
-		viewPortMatrix.Transformation(tempVerts[i]);
+		tempVerts[i]._w = 1.0f/tempVerts[i]._w;
+		tempVerts[i]._x *= tempVerts[i]._w;
+		tempVerts[i]._y *= tempVerts[i]._w;
+		tempVerts[i]._u *= tempVerts[i]._w;
+		tempVerts[i]._v *= tempVerts[i]._w;
+		_viewPortMatrix.Transformation(tempVerts[i]);
 	}
 	_gradient = Gradients(tempVerts, poly.GetSides());
 	poly.SetVertices(tempVerts);
@@ -257,29 +257,29 @@ void Rasterizer::ProjectVerts(vector<Vertex> & verts)
 {
 	for(unsigned int i = 0; i < 3; i++)
 	{
-		cameraMatrix.Transformation(verts[i]);
-		projMatrix.Transformation(verts[i]);
+		_cameraMatrix.Transformation(verts[i]);
+		_projMatrix.Transformation(verts[i]);
 	}
 }
 
 void Rasterizer::SetFov(float Degree)
 {
-	m_fov = float(Degree) * (float(PI)/180.0f); 
+	_fov = float(Degree) * (float(PI)/180.0f); 
 }
 
 void Rasterizer::SetPixel(int x, int y, float z, const Color &color)
 {
-	if ( x == m_width || y == m_height)
+	if ( x == _width || y == _height)
 	{
-		x = m_width - 1;
-		y = m_height - 1;
+		x = _width - 1;
+		y = _height - 1;
 	}
 
 	int unsigned index = 0;
-	index = (int)x + ((int)y * m_width);
-	if (UpdateZBuff(z, m_nearPlane, m_farPlane, index))
+	index = (int)x + ((int)y * _width);
+	if (UpdateZBuff(z, _nearPlane, _farPlane, index))
 	{
-		m_pixels[index] = Pixel(color.r,color.g,color.b);
+		_pixels[index] = Pixel(color._r,color._g,color._b);
 	}
 }
 
@@ -287,18 +287,18 @@ void Rasterizer::SetPixel(int x, int y, float z, float u, float v)
 {
 	int unsigned index = 0;
 
-	index = x + (y * m_width);
+	index = x + (y * _width);
 
-	if (UpdateZBuff(z, m_nearPlane, m_farPlane, index))
+	if (UpdateZBuff(z, _nearPlane, _farPlane, index))
 	{
-		_image.SetTex(m_pixels[index], u, v);
+		_image.SetTex(_pixels[index], u, v);
 	}
 }
 
 void Rasterizer::ResetZBuff()
 {
-	void * zBuff16Bit = &m_zBuff[0];
-	int size = sizeof(m_zBuff[0]) * (m_width * m_height);
+	void * zBuff16Bit = &_zBuff[0];
+	int size = sizeof(_zBuff[0]) * (_width * _height);
 	memset(zBuff16Bit, 0xF, size);
 }
 
@@ -314,10 +314,10 @@ float Rasterizer::ConvertTo16Bit(float & tempFloat)
 
 bool Rasterizer::UpdateZBuff(float Z, float nearZ, float farZ, int index)
 {
-	float tempBuff = (Z - m_nearPlane)/(m_farPlane - m_nearPlane);
-	if ( (tempBuff <= ConvertToFloat(m_zBuff[index])) && (tempBuff > 0.0f))
+	float tempBuff = (Z - _nearPlane)/(_farPlane - _nearPlane);
+	if ( (tempBuff <= ConvertToFloat(_zBuff[index])) && (tempBuff > 0.0f))
 	{
-		m_zBuff[index] = ConvertTo16Bit(tempBuff);
+		_zBuff[index] = ConvertTo16Bit(tempBuff);
 		return true;
 	}
 	else
@@ -332,7 +332,7 @@ void Rasterizer::SnagCamera(Camera cameras[])
 	{
 		if (cameras[i].GetActivety())
 		{
-			cameras[i].GetCameraMatrix(cameraMatrix, cameraPos);
+			cameras[i].GetCameraMatrix(_cameraMatrix, _cameraPos);
 		}
 		else 
 		{
@@ -343,7 +343,7 @@ void Rasterizer::SnagCamera(Camera cameras[])
 
 void Rasterizer::SnagCamera(Camera& camera)
 {
-	camera.GetCameraMatrix(cameraMatrix, cameraPos);
+	camera.GetCameraMatrix(_cameraMatrix, _cameraPos);
 }
 
 float Rasterizer::ToRadians(float degrees)
@@ -356,27 +356,27 @@ void Rasterizer::CheckEdges(vector<Edge> & e, unsigned short numEdges)
 {
 	for (unsigned int i = 0; i < numEdges; i++)
 	{
-		int yDiff = e[i].Y2 - e[i].Y1;
+		int yDiff = e[i]._y2 - e[i]._y1;
 		if ( yDiff == 0)
 			continue;
-		Color colorDiff = e[i].m_color2 - e[i].m_color1;
-		float xDiff = float(e[i].X2) - float(e[i].X1);
+		Color colorDiff = e[i]._color2 - e[i]._color1;
+		float xDiff = float(e[i]._x2) - float(e[i]._x1);
 		float xStep = xDiff/yDiff;
-		float zDiff = e[i].Z2 - e[i].Z1;
-		float uDiff = e[i].U2 - e[i].U1;
-		float vDiff = e[i].V2 - e[i].V1;
-		float invWDiff = e[i].W2 - e[i].W1;
+		float zDiff = e[i]._z2 - e[i]._z1;
+		float uDiff = e[i]._u2 - e[i]._u1;
+		float vDiff = e[i]._v2 - e[i]._v1;
+		float invWDiff = e[i]._w2 - e[i]._w1;
 		float zStep = zDiff/yDiff;
 		float uStep = uDiff/yDiff;
 		float vStep = vDiff/yDiff;
 		float invWStep = invWDiff/yDiff;
-		float xResult = e[i].X1;
-		float zResult = e[i].Z1;
-		float uResult = e[i].U1;
-		float vResult = e[i].V1;
-		float invWResult = e[i].W1;
+		float xResult = e[i]._x1;
+		float zResult = e[i]._z1;
+		float uResult = e[i]._u1;
+		float vResult = e[i]._v1;
+		float invWResult = e[i]._w1;
 		Color colorResult;
-		for(int j = e[i].Y1; j < e[i].Y2; j++)
+		for(int j = e[i]._y1; j < e[i]._y2; j++)
 		{
 			GetBuffer(int(xResult), zResult, uResult, vResult, invWResult, colorResult, j);
 			xResult += xStep;
@@ -391,68 +391,68 @@ void Rasterizer::CheckEdges(vector<Edge> & e, unsigned short numEdges)
 
 void Rasterizer::GetBuffer(int xBounds, float zBounds, float uBounds, float vBounds, float wBounds, Color colorBounds, int yPos)
 {
-	if ( xBounds < leftBounds[yPos] )
+	if ( xBounds < _leftBounds[yPos] )
 	{
-		leftUBounds[yPos] = uBounds;
-		leftVBounds[yPos] = vBounds;
-		leftColor[yPos] = colorBounds;
-		leftZBounds[yPos] = zBounds;
-		leftWBounds[yPos] = wBounds;
+		_leftUBounds[yPos] = uBounds;
+		_leftVBounds[yPos] = vBounds;
+		_leftColor[yPos] = colorBounds;
+		_leftZBounds[yPos] = zBounds;
+		_leftWBounds[yPos] = wBounds;
 	}
-	leftBounds[yPos] = min(leftBounds[yPos], xBounds);
+	_leftBounds[yPos] = min(_leftBounds[yPos], xBounds);
 
-	if ( xBounds > rightBounds[yPos] )
+	if ( xBounds > _rightBounds[yPos] )
 	{
-		rightUBounds[yPos] = uBounds;
-		rightVBounds[yPos] = vBounds;
-		rightColor[yPos] = colorBounds;
-		rightZBounds[yPos] = zBounds;
-		rightWBounds[yPos] = wBounds;
+		_rightUBounds[yPos] = uBounds;
+		_rightVBounds[yPos] = vBounds;
+		_rightColor[yPos] = colorBounds;
+		_rightZBounds[yPos] = zBounds;
+		_rightWBounds[yPos] = wBounds;
 	}
-	rightBounds[yPos] = max(rightBounds[yPos], xBounds);
+	_rightBounds[yPos] = max(_rightBounds[yPos], xBounds);
 }
 
 void Rasterizer::ResetBounds()
 {
-	for (int i = 0; i < m_height; i++)
+	for (int i = 0; i < _height; i++)
 	{
-		leftBounds[i] = (m_width + 1);
+		_leftBounds[i] = (_width + 1);
 	}
-	for (int i = 0; i < m_height; i++)
+	for (int i = 0; i < _height; i++)
 	{
-		rightBounds[i] = (-1);
+		_rightBounds[i] = (-1);
 	}
 }
 
 void Rasterizer::DrawSpanBetweenBuffers()
 {
-	for ( int i = 0; i < m_height; i++)
+	for ( int i = 0; i < _height; i++)
 	{
-		if ( leftBounds[i] == (m_width + 1) && rightBounds[i] == -1 )
+		if ( _leftBounds[i] == (_width + 1) && _rightBounds[i] == -1 )
 		{
 			continue;
 		}
-		Span spans(leftColor[i], leftBounds[i], leftZBounds[i], leftUBounds[i], leftVBounds[i], leftWBounds[i], 
-			rightColor[i], rightBounds[i], rightZBounds[i], rightUBounds[i], rightVBounds[i], rightWBounds[i]);
+		Span spans(_leftColor[i], _leftBounds[i], _leftZBounds[i], _leftUBounds[i], _leftVBounds[i], _leftWBounds[i], 
+			       _rightColor[i], _rightBounds[i], _rightZBounds[i], _rightUBounds[i], _rightVBounds[i], _rightWBounds[i]);
 		DrawSpan(spans, i);
 	}
 }
 
 void Rasterizer::SetUpMatrices()
 {
-	float h = 1/tan(m_fov/2);
+	float h = 1/tan(_fov/2);
 	float w = h;
-	float a = (float)m_width/(float)m_height;
-	float z1 = m_farPlane/(m_farPlane - m_nearPlane);
-	float z2 = -(m_nearPlane * m_farPlane)/(m_farPlane - m_nearPlane);
+	float a = (float)_width/(float)_height;
+	float z1 = _farPlane/(_farPlane - _nearPlane);
+	float z2 = -(_nearPlane * _farPlane)/(_farPlane - _nearPlane);
 	 
-	projMatrix.SetMatrix(   h,  0.0f, 0.0f,  0.0f,
-						 0.0f, w * a, 0.0f,  0.0f,
-						 0.0f,  0.0f,   z1,  1.0f,
-						 0.0f,  0.0f,   z2,  0.0f);
+	_projMatrix.SetMatrix(   h,  0.0f, 0.0f,  0.0f,
+						  0.0f, w * a, 0.0f,  0.0f,
+						  0.0f,  0.0f,   z1,  1.0f,
+						  0.0f,  0.0f,   z2,  0.0f);
 	
-	viewPortMatrix.SetMatrix(    float(m_width/2),                 0.0f,  0.0f, 0.0f,
-							                 0.0f, float(-m_height/2),  0.0f, 0.0f,
-							                 0.0f,                 0.0f,  1.0f, 0.0f,
-							 float((m_width)/2), float((m_height)/2), 0.0f, 1.0f);
+	_viewPortMatrix.SetMatrix(    float(_width/2),               0.0f,  0.0f, 0.0f,
+							                 0.0f,  float(-_height/2),  0.0f, 0.0f,
+							                 0.0f,               0.0f,  1.0f, 0.0f,
+							    float((_width)/2), float((_height)/2),  0.0f, 1.0f);
 }

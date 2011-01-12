@@ -22,19 +22,19 @@ GObject::GObject(const std::vector<Vertex> & vertices, const std::vector<unsigne
 	InitializeVert(vertices);
 	InitializeIndices(indices);
 
-	worldMatrix.Identity();
+	_worldMatrix.Identity();
 
-	isDirty = false;
-	displayBasis = true;
-	isWorld = world;
-	filled = false;
+	_isDirty = false;
+	_displayBasis = true;
+	_isWorld = world;
+	_filled = false;
 
-	arbRot = 0;
-	rot = Vertex();
-	pos = Vertex();
-	trans = Vertex();
-	scale = Vertex(1.0f, 1.0f, 1.0f);
-	arbAxis = Vertex(1.0f, 0.0f, 0.0f);
+	_arbRot = 0;
+	_rot = Vertex();
+	_pos = Vertex();
+	_trans = Vertex();
+	_scale = Vertex(1.0f, 1.0f, 1.0f);
+	_arbAxis = Vertex(1.0f, 0.0f, 0.0f);
 }
 
 
@@ -44,74 +44,74 @@ GObject::~GObject(void)
 
 void GObject::SetPos(const Vertex & offset)
 {
-		pos.x = offset.x;
-		pos.y = offset.y;
-		pos.z = offset.z;
+		_pos._x = offset._x;
+		_pos._y = offset._y;
+		_pos._z = offset._z;
 
-		worldMatrix.SetPos(pos);
+		_worldMatrix.SetPos(_pos);
 }
 
 void GObject::Scale(const float scalar)
 {
-	if ( scale != scalar)
+	if ( _scale != scalar)
 	{
-		scale.x = scalar;
-		scale.y = scalar;
-		scale.z = scalar;
+		_scale._x = scalar;
+		_scale._y = scalar;
+		_scale._z = scalar;
 
-		isDirty = true;
+		_isDirty = true;
 	}
 }
 
 void GObject::TranslateX(const float & translate)
 {
-	trans.x += translate;
+	_trans._x += translate;
 
-	isDirty = true;
+	_isDirty = true;
 }
 
 void GObject::TranslateY(const float & translate)
 {
-	trans.y += translate;
+	_trans._y += translate;
 
-	isDirty = true;
+	_isDirty = true;
 }
 
 void GObject::TranslateZ(const float & translate)
 {
-	trans.z += translate;
+	_trans._z += translate;
 
-	isDirty = true;
+	_isDirty = true;
 }
 
 void GObject::Translate(const Vertex & translate) 
 {
-		trans.x += translate.x;
-		trans.y += translate.y;
-		trans.z += translate.z;
+		_trans._x += translate._x;
+		_trans._y += translate._y;
+		_trans._z += translate._z;
 
-		isDirty = true;
+		_isDirty = true;
 }
 
 void GObject::InitializeVert(const std::vector<Vertex> & vertices)
 {
-	verts = vertices;
+	_verts = vertices;
 }
 
 void GObject::InitializeIndices(const std::vector<unsigned short> & indices)
 {
-	index = indices;
+	_index = indices;
 }
 
 std::vector<Vertex> * GObject::AccessVertices()
 {
-	std::vector<Vertex> * pVertices = &verts;
+	std::vector<Vertex> * pVertices = &_verts;
 	return pVertices;
 }
 
 std::vector<unsigned short> * GObject::AccessIndices()
 {
-	std::vector<unsigned short> * pIndices = &index;
+	std::vector<unsigned short> * pIndices = &_index;
 	return pIndices;
 }
 
@@ -119,7 +119,7 @@ unsigned int GObject::VertexCount() const
 {
 	unsigned int count = 0;
 
-	for ( unsigned int i = 0; i < verts.size(); i++)
+	for ( unsigned int i = 0; i < _verts.size(); i++)
 	{
 		count++;
 	}
@@ -131,7 +131,7 @@ unsigned int GObject::IndexCount() const
 {
 	unsigned int count = 0;
 
-	for (unsigned int i = 0; i < verts.size(); i++)
+	for (unsigned int i = 0; i < _verts.size(); i++)
 	{
 		count++;
 	}
@@ -141,74 +141,74 @@ unsigned int GObject::IndexCount() const
 
 void GObject::GetWorldMatrix(Matrix4x4& mat)
 {
-	if (isDirty == true)
+	if (_isDirty == true)
 	{
-		if (isWorld == false)
+		if (_isWorld == false)
 		{
 			mat.Identity();
-			mat.Scale(scale);
-			mat.EulerRotation(rot);
-			mat.ArbAxisRotation(arbAxis, arbRot);
-			mat.SetPos(pos);
-			mat.Translation(trans);
+			mat.Scale(_scale);
+			mat.EulerRotation(_rot);
+			mat.ArbAxisRotation(_arbAxis, _arbRot);
+			mat.SetPos(_pos);
+			mat.Translation(_trans);
 		}
 		else
 		{
 			mat.Identity();
-			mat.Scale(scale);
-			mat.SetPos(pos);
-			mat.Translation(trans);
-			mat.EulerRotation(rot);
+			mat.Scale(_scale);
+			mat.SetPos(_pos);
+			mat.Translation(_trans);
+			mat.EulerRotation(_rot);
 		}
-		worldMatrix = mat;
+		_worldMatrix = mat;
 
-		isDirty = false;
+		_isDirty = false;
 	}
 	else
 	{
-		mat = worldMatrix;
+		mat = _worldMatrix;
 	}
 }
 
 const Matrix4x4& GObject::GetWorldMatrix()
 {
-	return worldMatrix;
+	return _worldMatrix;
 }
 
 void GObject::Render(Rasterizer& raster)
 {
 	Matrix4x4 tempMatrix;
 	GetWorldMatrix(tempMatrix);
-	raster.ProcessVertices(verts, index, tempMatrix, filled); 
+	raster.ProcessVertices(_verts, _index, tempMatrix, _filled); 
 }
 
 void GObject::RotateX(float degrees) 
 {
-		isDirty = true; 
-		rot.x += degrees;
+		_isDirty = true; 
+		_rot._x += degrees;
 } 
 
 void GObject::RotateY(float degrees) 
 { 
-		isDirty = true; 
-		rot.y += degrees;
+		_isDirty = true; 
+		_rot._y += degrees;
 } 
 
 void GObject::RotateZ(float degrees) 
 { 
-		isDirty = true; 
-		rot.z += degrees;
+		_isDirty = true; 
+		_rot._z += degrees;
 } 
 
 void GObject::Fill(bool fill)
 {
-	filled = fill;
+	_filled = fill;
 }
 
 void GObject::SetArbAxis(Vertex & verts)
 {
-	arbAxis = verts;
-	arbAxis.Normalize();
+	_arbAxis = verts;
+	_arbAxis.Normalize();
 }
 
 void GObject::CaptureKeys()
@@ -280,34 +280,34 @@ void GObject::CaptureKeys()
 
 	if (GetAsyncKeyState(Key_9) != 0)
 	{
-		scale.x += 0.07;
-		scale.y += 0.07;
-		scale.z += 0.07;
-		Scale(scale.x);
+		_scale._x += 0.07;
+		_scale._y += 0.07;
+		_scale._z += 0.07;
+		Scale(_scale._x);
 	}
 
 	if (GetAsyncKeyState(Key_0) != 0)
 	{
-		scale.x -= 0.07;
-		scale.y -= 0.07;
-		scale.z -= 0.07;
-		Scale(scale.x);
-		if (scale.x < 0.01 || scale.y < 0.01 || scale.z < 0.01)
+		_scale._x -= 0.07;
+		_scale._y -= 0.07;
+		_scale._z -= 0.07;
+		Scale(_scale._x);
+		if (_scale._x < 0.01 || _scale._y < 0.01 || _scale._z < 0.01)
 		{
-			scale.x = 0.01;
-			scale.y = 0.01;
-			scale.z = 0.01;
+			_scale._x = 0.01;
+			_scale._y = 0.01;
+			_scale._z = 0.01;
 		}
 	}
 
 	if (GetKeyState(Key_F) == 0)
 	{
-		filled = true;
+		_filled = true;
 	}
 
 	if (GetKeyState(Key_F) != 0)
 	{
-		filled = false;
+		_filled = false;
 	}
 
 }

@@ -11,12 +11,12 @@ using namespace PixelToaster;
 class Edge
 {
 public:
-	Color m_color1, m_color2;
-	int X1, Y1, X2, Y2;
-	float W1, W2;
-	float Z1, Z2;
-	float U1, U2;
-	float V1, V2;
+	Color _color1, _color2;
+	int _x1, _y1, _x2, _y2;
+	float _w1, _w2;
+	float _z1, _z2;
+	float _u1, _u2;
+	float _v1, _v2;
 	Edge(const Color &color1, int x1, int y1, float z1, float u1, float v1, float w1,
 		 const Color &color2, int x2, int y2, float z2, float u2, float v2, float w2);
 	Edge(){};

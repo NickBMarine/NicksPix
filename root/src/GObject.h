@@ -6,23 +6,23 @@
 class GObject
 {
 	std::vector<NPolygon> _polygon;
-	std::vector<Vertex> verts;
-	std::vector<unsigned short> index;
+	std::vector<Vertex> _verts;
+	std::vector<unsigned short> _index;
 
-	Matrix4x4 worldMatrix;
+	Matrix4x4 _worldMatrix;
 
-	bool isDirty;
-	bool isWorld;
-	bool displayBasis;
-	bool filled;
+	bool _isDirty;
+	bool _isWorld;
+	bool _displayBasis;
+	bool _filled;
 
-	Vertex rot;
-	Vertex trans;
-	Vertex pos;
-	Vertex scale;
-	Vertex arbAxis;
+	Vertex _rot;
+	Vertex _trans;
+	Vertex _pos;
+	Vertex _scale;
+	Vertex _arbAxis;
 
-	float arbRot;
+	float _arbRot;
 
 public:
 
@@ -48,18 +48,18 @@ public:
 	void RotateY(float degrees);
 	void RotateZ(float degrees);
  
-	void ScaleX(float scalar) { if (scalar != scale.x) { isDirty = true; scale.x = scalar; } } ;
-	void ScaleY(float scalar) { if (scalar != scale.y) { isDirty = true; scale.y = scalar; } } ;
-	void ScaleZ(float scalar) { if (scalar != scale.z) { isDirty = true; scale.z = scalar; } } ;
+	void ScaleX(float scalar) { if (scalar != _scale._x) { _isDirty = true; _scale._x = scalar; } } ;
+	void ScaleY(float scalar) { if (scalar != _scale._y) { _isDirty = true; _scale._y = scalar; } } ;
+	void ScaleZ(float scalar) { if (scalar != _scale._z) { _isDirty = true; _scale._z = scalar; } } ;
  
     void Scale(const float scalar);
 	//===================================================================================
 
-	Vertex Scale() const { return scale; };  // return the scale vector
-	Vertex Rotation() const { return rot; }; // return the rot vector
-	Vertex Translation() const { return pos; }; // return the pos vector
+	Vertex Scale() const { return _scale; };  // return the scale vector
+	Vertex Rotation() const { return _rot; }; // return the rot vector
+	Vertex Translation() const { return _pos; }; // return the pos vector
 
-	void SetWorld(bool flag) { isWorld = flag; };
+	void SetWorld(bool flag) { _isWorld = flag; };
 	void CaptureKeys();
  
     unsigned int VertexCount() const;

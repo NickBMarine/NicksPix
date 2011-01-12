@@ -22,43 +22,43 @@ class Rasterizer
 {
 private:
 	//Store the width and height of the display and the pixels.
-	Display display;
+	Display _display;
 	Gradients _gradient;
-	Color * leftColor;
-	Color * rightColor;
-	Vertex basisOrigin;
-	Vertex basisP;
-	Vertex basisQ;
-	Vertex basisR;
-	float * leftUBounds;
-	float * rightUBounds;
-	float * leftVBounds;
-	float * rightVBounds;
-	float * leftZBounds;
-	float * rightZBounds;
-	float * leftWBounds;
-	float * rightWBounds;
-	int * leftBounds;
-	int * rightBounds;
-	vector<Pixel>  m_pixels;
-	vector<unsigned short>  m_zBuff;
-	Vertex cameraPos;
+	Color * _leftColor;
+	Color * _rightColor;
+	Vertex _basisOrigin;
+	Vertex _basisP;
+	Vertex _basisQ;
+	Vertex _basisR;
+	float * _leftUBounds;
+	float * _rightUBounds;
+	float * _leftVBounds;
+	float * _rightVBounds;
+	float * _leftZBounds;
+	float * _rightZBounds;
+	float * _leftWBounds;
+	float * _rightWBounds;
+	int * _leftBounds;
+	int * _rightBounds;
+	vector<Pixel> _pixels;
+	vector<unsigned short> _zBuff;
+	Vertex _cameraPos;
 	Texel _image;
 	bool _texMap;
 	bool _doGradients;
 	bool _drawBasis;
-	Matrix4x4 cameraMatrix;
-	Matrix4x4 projMatrix;
-	Matrix4x4 screenMatrix;
-	Matrix4x4 toClipMatrix;
-	Matrix4x4 invClipMatrix;
-	Matrix4x4 viewPortMatrix;
-	int m_width, m_height;
-	int rotManager;
-	float m_fov,
-		  m_projFacto;
-	float	m_nearPlane,
-			m_farPlane;
+	Matrix4x4 _cameraMatrix;
+	Matrix4x4 _projMatrix;
+	Matrix4x4 _screenMatrix;
+	Matrix4x4 _toClipMatrix;
+	Matrix4x4 _invClipMatrix;
+	Matrix4x4 _viewPortMatrix;
+	int _width, _height;
+	int _rotManager;
+	float _fov,
+		  _projFacto;
+	float _nearPlane,
+		  _farPlane;
 public:
 	Rasterizer(){};
 	Rasterizer(const unsigned int width, const unsigned int height, const float Degrees);
@@ -69,7 +69,7 @@ public:
 	//Added implementation for texels
 	void SetPixel(int x, int y, float z, float u, float v);
 	//Returns the object's m_pixels data member.
-	vector<Pixel> & GetPixels() {ResetZBuff(); return m_pixels;};
+	vector<Pixel> & GetPixels() {ResetZBuff(); return _pixels;};
 	//Draws a line
 	void DrawLine(const Vertex &vertex1, const Vertex &vertex2, Color & color = Color(1.0f, 0.0f, 0.0f));
 	//Draws a triangle. Last argument uses a bool value to either fill

@@ -25,9 +25,9 @@ void NPolygon::CalculateEdges()
 {
 	for ( int i = 0; i < _sides; i++)
 	{
-		_edges.push_back(Edge(_vertices[i].color, _vertices[i].x, _vertices[i].y, _vertices[i].z, _vertices[i].u, _vertices[i].v, 
-			_vertices[i].w, _vertices[(i+1)%_sides].color, _vertices[(i+1)%_sides].x, _vertices[(i+1)%_sides].y, _vertices[(i+1)%_sides].z, 
-			_vertices[(i+1)%_sides].u, _vertices[(i+1)%_sides].v, _vertices[(i+1)%_sides].w));
+		_edges.push_back(Edge(_vertices[i]._color, _vertices[i]._x, _vertices[i]._y, _vertices[i]._z, _vertices[i]._u, _vertices[i]._v, 
+			_vertices[i]._w, _vertices[(i+1)%_sides]._color, _vertices[(i+1)%_sides]._x, _vertices[(i+1)%_sides]._y, _vertices[(i+1)%_sides]._z, 
+			_vertices[(i+1)%_sides]._u, _vertices[(i+1)%_sides]._v, _vertices[(i+1)%_sides]._w));
 	}
 }
 

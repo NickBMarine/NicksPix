@@ -9,9 +9,9 @@ Color::Color(int red, int green, int blue)
 	if ( green > 255)
 		green = 255;
 
-	r = (float)red / 255;
-	g = (float)green / 255;
-	b = (float)blue / 255;
+	_r = (float)red / 255;
+	_g = (float)green / 255;
+	_b = (float)blue / 255;
 }
 
 Color::Color(float red, float green, float blue)
@@ -23,9 +23,9 @@ Color::Color(float red, float green, float blue)
 	if ( blue > 1.0f )
 		blue = 1.0f;
 
-	r = red;
-	g = green;
-	b = blue;
+	_r = red;
+	_g = green;
+	_b = blue;
 
 }
 
@@ -33,11 +33,11 @@ Color Color::operator+(const Color &c) const
 {
 	Color tempColor;
 	
-	tempColor.b = b + c.b;
+	tempColor._b = _b + c._b;
 	
-	tempColor.r = r + c.r;
+	tempColor._r = _r + c._r;
 	
-	tempColor.g = g + c.g;
+	tempColor._g = _g + c._g;
 
 	return tempColor;
 
@@ -47,11 +47,11 @@ Color Color::operator-(const Color &c) const
 {
 	Color tempColor;
 	
-	tempColor.b = b - c.b;
+	tempColor._b = _b - c._b;
 	
-	tempColor.r = r - c.r;
+	tempColor._r = _r - c._r;
 	
-	tempColor.g = g - c.g;
+	tempColor._g = _g - c._g;
 
 	return tempColor;
 }
@@ -60,11 +60,11 @@ Color Color::operator*(float f) const
 {
 	Color tempColor;
 	
-	tempColor.b = b * f;
+	tempColor._b = _b * f;
 	
-	tempColor.r = r * f;
+	tempColor._r = _r * f;
 	
-	tempColor.g = g * f;
+	tempColor._g = _g * f;
 
 	return tempColor;
 }
@@ -73,18 +73,18 @@ Color Color::operator/(float f) const
 {
 	Color tempColor;
 	
-	tempColor.b = b / f;
+	tempColor._b = _b / f;
 	
-	tempColor.r = r / f;
+	tempColor._r = _r / f;
 	
-	tempColor.g = g / f;
+	tempColor._g = _g / f;
 
 	return tempColor;
 }
 
 bool Color::operator!=(float f) const
 {
-	if ( r != f && g != f && b != f)
+	if ( _r != f && _g != f && _b != f)
 	{
 		return true;
 	}
@@ -93,7 +93,7 @@ bool Color::operator!=(float f) const
 
 bool Color::operator==(float f) const 
 {
-	if ( r == f && g == f && b == f)
+	if ( _r == f && _g == f && _b == f)
 	{
 		return true;
 	}

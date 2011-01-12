@@ -63,52 +63,52 @@ float Camera::ToRadians(float degrees)
 
 void Camera::RotX(float x)
 {
-	_rot.x += x;
+	_rot._x += x;
 	_isDirty = true;
 }
 
 void Camera::RotY(float y)
 {
-	_rot.y += y;
+	_rot._y += y;
 	_isDirty = true;
 }
 
 void Camera::RotZ(float z)
 {
-	_rot.z += z;
+	_rot._z += z;
 	_isDirty = true;
 }
 
 void Camera::RotFac()
 {
 
-	_forwardFac.x = sin(ToRadians(_rot.y));
-	_forwardFac.z = cos(ToRadians(_rot.y));
-	_leftFac.x = cos(ToRadians(_rot.y));
-	_leftFac.z = -sin(ToRadians(_rot.y));
+	_forwardFac._x = sin(ToRadians(_rot._y));
+	_forwardFac._z = cos(ToRadians(_rot._y));
+	_leftFac._x = cos(ToRadians(_rot._y));
+	_leftFac._z = -sin(ToRadians(_rot._y));
 
 	if ( _noClip)
 	{
-		_upFac.y = -sin(ToRadians(_rot.x));
+		_upFac._y = -sin(ToRadians(_rot._x));
 	}
 }
 
 void Camera::TransX(float x)
 {
-	_pos.x = x;
+	_pos._x = x;
 	_isDirty = true;
 
 }
 
 void Camera::TransY(float y)
 {
-	_pos.y = y;
+	_pos._y = y;
 	_isDirty = true;
 }
 
 void Camera::TransZ(float z)
 {
-	_pos.z = z;
+	_pos._z = z;
 	_isDirty = true;
 }
 
@@ -298,22 +298,22 @@ void Camera::CalcMouseRot(POINT & ptr)
 	}
 	if ( ptr.x > _mousePos.x)
 	{
-		tempAng.y = .03 * (ptr.x - _mousePos.x);
+		tempAng._y = .03 * (ptr.x - _mousePos.x);
 	}
 
 	if ( ptr.x < _mousePos.x)
 	{
-		tempAng.y = -.03 * (_mousePos.x - ptr.x);
+		tempAng._y = -.03 * (_mousePos.x - ptr.x);
 	}
 
 	if ( ptr.y > _mousePos.y)
 	{
-		tempAng.x = .03 * (ptr.y  - _mousePos.y);
+		tempAng._x = .03 * (ptr.y  - _mousePos.y);
 	}
 
 	if ( ptr.y < _mousePos.y)
 	{
-		tempAng.x = -.03 * (_mousePos.y - ptr.y);
+		tempAng._x = -.03 * (_mousePos.y - ptr.y);
 	}
 
 	Rotate(tempAng);

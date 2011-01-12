@@ -3,20 +3,19 @@
 
 struct Vertex
 {
-public:
-	Color color;
-	float x, y, z, w;
-	float u, v;
-	Vertex() : x(0.0f), y(0.0f), z(0.0f), u(0.0f), v(0.0f) {};
-	Vertex(const float &X, const float &Y, const float &Z) : x(X), y(Y), z(Z) {};
-	Vertex(const float &X, const float &Y, const float &Z, const float &U, const float &V) : x(X), y(Y), z(Z), u(U), v(V) {};
-	Vertex(const Color &C, const float &X, const float &Y) : color(C), x(X), y(Y), z(0.0f), w(1.0f) {};
-	Vertex(const Color &C, const float &X, const float &Y, const float &Z) : color(C), x(X), y(Y), z(Z), w(1.0f){}
-	Vertex(const Color &C, const float &X, const float &Y, const float &Z, const float &W) : color(C), x(X), y(Y), z(Z), w(W){}
-	Vertex(const float &X, const float &Y, const float &Z, const float &W) : x(X), y(Y), z(Z), w(W){};
-	Vertex(const float &X, const float &Y, const float &Z, const float &W, const float &U, const float &V) : x(X), y(Y), z(Z), w(W), u(U), v(V) {};
-	Vertex(const Color &C) : color(C){};
-	Vertex(const float &X) : x(X){};
+	Color _color;
+	float _x, _y, _z, _w;
+	float _u, _v;
+	Vertex() : _x(0.0f), _y(0.0f), _z(0.0f), _u(0.0f), _v(0.0f) {};
+	Vertex(const float &X, const float &Y, const float &Z) : _x(X), _y(Y), _z(Z) {};
+	Vertex(const float &X, const float &Y, const float &Z, const float &U, const float &V) : _x(X), _y(Y), _z(Z), _w(1.0f), _u(U), _v(V) {};
+	Vertex(const Color &C, const float &X, const float &Y) : _color(C), _x(X), _y(Y), _z(0.0f), _w(1.0f) {};
+	Vertex(const Color &C, const float &X, const float &Y, const float &Z) : _color(C), _x(X), _y(Y), _z(Z), _w(1.0f){}
+	Vertex(const Color &C, const float &X, const float &Y, const float &Z, const float &W) : _color(C), _x(X), _y(Y), _z(Z), _w(W){}
+	Vertex(const float &X, const float &Y, const float &Z, const float &W) : _x(X), _y(Y), _z(Z), _w(W){};
+	Vertex(const float &X, const float &Y, const float &Z, const float &W, const float &U, const float &V) : _x(X), _y(Y), _z(Z), _w(W), _u(U), _v(V) {};
+	Vertex(const Color &C) : _color(C){};
+	Vertex(const float &X) : _x(X){};
 	void SetHomVec(Vertex & vector);
 	void Negate();
 	void Normalize();
