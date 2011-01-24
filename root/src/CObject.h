@@ -9,14 +9,13 @@ using namespace std;
 class CObject
 {
 	fstream _mesh;
-	Color _color;
 	vector<Vertex> _vertices;
 	vector<unsigned short> _indices;
 	void CreateMesh();
 	void FileFailure(char*);
 public:
 	CObject(){};
-	CObject(char ind_File[], Color &);
+	CObject(char ind_File[]);
 	~CObject(void){};
 
 	vector<Vertex> GetVertices();

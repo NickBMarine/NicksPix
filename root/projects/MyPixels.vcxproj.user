@@ -8,6 +8,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerWorkingDirectory>..\resource</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>.\art\meshes\Mesh.txt .\art\image\images.tga</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>.\art\meshes\Mesh.txt .\art\image\IMG_2256b.tga</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

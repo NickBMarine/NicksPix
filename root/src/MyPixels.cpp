@@ -20,7 +20,7 @@ int main(int args, char * argNames[])
 	vector<Vertex> vertices;
 	vector<unsigned short> indices;
 
-	CObject object(argNames[1], Color(1.0f, 0.0f, 0.0f));
+	CObject object(argNames[1]);
 	Texel image(argNames[2]);
 	image.TextInit();
 
@@ -144,13 +144,14 @@ int main(int args, char * argNames[])
 			camera.Listen();
 			rasterizer.SnagCamera(camera);
 
-			//gObject.Render(rasterizer);
-			//gObject.CaptureKeys();
+			gObject.CaptureKeys();
+			gObject.Render(rasterizer);
+
 			//triangle1.Fill(fill);
 			//triangle1.Render(rasterizer);
 			//triangle2.Render(rasterizer);
-			tObject.CaptureKeys();
-			tObject.Render(rasterizer);
+			//tObject.CaptureKeys();
+			//tObject.Render(rasterizer);
 
 			Vertex getRot = camera.GetRotation();
 

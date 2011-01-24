@@ -1,87 +1,22 @@
-<<<<<<< HEAD
-﻿Build started 1/11/2011 2:29:12 PM.
-=======
-﻿Build started 1/12/2011 10:39:20 AM.
->>>>>>> refactor
+﻿Build started 1/23/2011 11:48:26 PM.
      1>Project "C:\Users\Nick and Christine\Desktop\NicksPix\root\projects\MyPixels.vcxproj" on node 2 (build target(s)).
      1>c:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.Targets(1200,9): warning : The referenced project '..\projects\PixelToaster.vcxproj' does not exist.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(299,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>InitializeBuildStatus:
          Creating "Debug\MyPixels.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-<<<<<<< HEAD
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Camera.cpp ..\src\Clipper.cpp ..\src\CObject.cpp ..\src\Color.cpp ..\src\Edge.cpp ..\src\GObject.cpp ..\src\Gradients.cpp ..\src\Matrix4x4.cpp ..\src\MyPixels.cpp ..\src\NPolygon.cpp ..\src\Rasterizer.cpp ..\src\Span.cpp ..\src\Texel.cpp ..\src\Vector3.cpp ..\src\Vertex.cpp ..\src\ZBuffer.cpp
-         ZBuffer.cpp
-         Vertex.cpp
-         Vector3.cpp
-         Texel.cpp
-     1>c:\users\nick and christine\desktop\nickspix\root\src\texel.cpp(74): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\texel.cpp(75): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-         Span.cpp
-     1>c:\users\nick and christine\desktop\nickspix\root\src\span.cpp(9): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\span.cpp(15): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\span.cpp(24): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\span.cpp(30): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-=======
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\CObject.cpp ..\src\Camera.cpp ..\src\Clipper.cpp ..\src\GObject.cpp ..\src\Gradients.cpp ..\src\Matrix4x4.cpp ..\src\MyPixels.cpp ..\src\NPolygon.cpp ..\src\Rasterizer.cpp ..\src\Vertex.cpp
-         CObject.cpp
-         Generating Code...
-         Compiling...
-         Vertex.cpp
->>>>>>> refactor
-         Rasterizer.cpp
-     1>c:\users\nick and christine\desktop\nickspix\root\src\rasterizer.cpp(118): warning C4244: 'initializing' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\rasterizer.cpp(320): warning C4244: '=' : conversion from 'float' to 'unsigned short', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\rasterizer.cpp(373): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-         NPolygon.cpp
-     1>c:\users\nick and christine\desktop\nickspix\root\src\npolygon.cpp(30): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\npolygon.cpp(30): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\npolygon.cpp(30): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\npolygon.cpp(30): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\CObject.cpp ..\src\MyPixels.cpp
          MyPixels.cpp
      1>c:\users\nick and christine\desktop\nickspix\root\src\mypixels.cpp(126): warning C4244: 'initializing' : conversion from 'DWORD' to 'float', possible loss of data
      1>c:\users\nick and christine\desktop\nickspix\root\src\mypixels.cpp(142): warning C4244: '=' : conversion from 'DWORD' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\mypixels.cpp(170): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\mypixels.cpp(177): warning C4244: '=' : conversion from 'DWORD' to 'float', possible loss of data
-         Matrix4x4.cpp
-<<<<<<< HEAD
-         Gradients.cpp
-=======
->>>>>>> refactor
-         GObject.cpp
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(151): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(283): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(284): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(285): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(291): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(292): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(293): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(297): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(298): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\gobject.cpp(299): warning C4305: '=' : truncation from 'double' to 'float'
-<<<<<<< HEAD
-         Edge.cpp
-         Color.cpp
+     1>c:\users\nick and christine\desktop\nickspix\root\src\mypixels.cpp(171): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\nick and christine\desktop\nickspix\root\src\mypixels.cpp(178): warning C4244: '=' : conversion from 'DWORD' to 'float', possible loss of data
          CObject.cpp
-=======
->>>>>>> refactor
-         Clipper.cpp
-         Camera.cpp
-     1>c:\users\nick and christine\desktop\nickspix\root\src\camera.cpp(189): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\nick and christine\desktop\nickspix\root\src\camera.cpp(301): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\camera.cpp(306): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\camera.cpp(311): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\nick and christine\desktop\nickspix\root\src\camera.cpp(316): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
          Generating Code...
-<<<<<<< HEAD
-=======
-         Skipping... (no relevant changes detected)
-         Gradients.cpp
->>>>>>> refactor
        ResourceCompile:
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\NicksPix.res" ..\resource\scripts\NicksPix.rc 
+         All outputs are up-to-date.
        ManifestResourceCompile:
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\MyPixels.exe.embed.manifest.res" Debug\MyPixels_manifest.rc 
+         All outputs are up-to-date.
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\MyPixels.exe" /INCREMENTAL /NOLOGO PixelToaster.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\MyPixels.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Nick and Christine\Desktop\NicksPix\root\projects\Debug\MyPixels.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\MyPixels.lib" /MACHINE:X86 Debug\NicksPix.res
          Debug\MyPixels.exe.embed.manifest.res
@@ -98,40 +33,13 @@
          Debug\Rasterizer.obj
          Debug\Span.obj
          Debug\Texel.obj
-<<<<<<< HEAD
-         Debug\Vector3.obj
-=======
->>>>>>> refactor
          Debug\Vertex.obj
          Debug\ZBuffer.obj
        Manifest:
          c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\MyPixels.exe.embed.manifest" /manifest Debug\MyPixels.exe.intermediate.manifest
-<<<<<<< HEAD
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\MyPixels.exe.embed.manifest.res" Debug\MyPixels_manifest.rc 
-       LinkEmbedManifest:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\MyPixels.exe" /INCREMENTAL /NOLOGO PixelToaster.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\MyPixels.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Nick and Christine\Desktop\NicksPix\root\projects\Debug\MyPixels.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\MyPixels.lib" /MACHINE:X86 Debug\NicksPix.res
-         Debug\MyPixels.exe.embed.manifest.res
-         Debug\Camera.obj
-         Debug\Clipper.obj
-         Debug\CObject.obj
-         Debug\Color.obj
-         Debug\Edge.obj
-         Debug\GObject.obj
-         Debug\Gradients.obj
-         Debug\Matrix4x4.obj
-         Debug\MyPixels.obj
-         Debug\NPolygon.obj
-         Debug\Rasterizer.obj
-         Debug\Span.obj
-         Debug\Texel.obj
-         Debug\Vector3.obj
-         Debug\Vertex.obj
-         Debug\ZBuffer.obj
-=======
          All outputs are up-to-date.
        LinkEmbedManifest:
          All outputs are up-to-date.
->>>>>>> refactor
          MyPixels.vcxproj -> C:\Users\Nick and Christine\Desktop\NicksPix\root\projects\.\Debug\MyPixels.exe
        PostBuildEvent:
          Description: This will copy the MyPixels.exe to the respective bin folder
@@ -145,8 +53,4 @@
 
 Build succeeded.
 
-<<<<<<< HEAD
-Time Elapsed 00:00:12.00
-=======
-Time Elapsed 00:00:08.99
->>>>>>> refactor
+Time Elapsed 00:00:03.72
