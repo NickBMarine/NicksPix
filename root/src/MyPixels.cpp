@@ -144,14 +144,14 @@ int main(int args, char * argNames[])
 			camera.Listen();
 			rasterizer.SnagCamera(camera);
 
-			gObject.CaptureKeys();
-			gObject.Render(rasterizer);
+			//gObject.CaptureKeys();
+			//gObject.Render(rasterizer);
 
 			//triangle1.Fill(fill);
 			//triangle1.Render(rasterizer);
 			//triangle2.Render(rasterizer);
-			//tObject.CaptureKeys();
-			//tObject.Render(rasterizer);
+			tObject.CaptureKeys();
+			tObject.Render(rasterizer);
 
 			Vertex getRot = camera.GetRotation();
 
